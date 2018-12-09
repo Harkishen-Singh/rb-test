@@ -4,6 +4,7 @@ import Header from '../components/header/header.jsx';
 import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
 import ThemeRoutes from '../routes/routing.jsx';
+import HomeComponent, { showHome } from '../components/home/home.jsx';
 
 class Fulllayout extends React.Component {
 	/*--------------------------------------------------------------------------------*/
@@ -73,31 +74,37 @@ class Fulllayout extends React.Component {
 				{/*--------------------------------------------------------------------------------*/}
 				{/* Header                                                                         */}
 				{/*--------------------------------------------------------------------------------*/}
-				<Header data={this.state} />
-				{/*--------------------------------------------------------------------------------*/}
-				{/* Sidebar                                                                        */}
-				{/*--------------------------------------------------------------------------------*/}
-				<Sidebar data={this.state} {...this.props} routes={ThemeRoutes} />
-				{/*--------------------------------------------------------------------------------*/}
+				{
+					!showHome ? 
+					<div>
+						<Header data={this.state} />
+						{/*--------------------------------------------------------------------------------*/}
+						{/* Sidebar                                                                        */}
+						{/*--------------------------------------------------------------------------------*/}
+						<Sidebar data={this.state} {...this.props} routes={ThemeRoutes} />
+						{/*--------------------------------------------------------------------------------*/}
 				{/* Page Main-Content                                                              */}
 				{/*--------------------------------------------------------------------------------*/}
-				<div className="page-wrapper d-block">
-					<div className="page-content container-fluid">
-						<Switch>
-							{ThemeRoutes.map((prop, key) => {
-								if (prop.redirect) {
-									return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
-								}
-								else {
-									return (
-										<Route path={prop.path} component={prop.component} key={key} />
-									);
-								}
-							})}
-						</Switch>
+						<div className="page-wrapper d-block">
+							<div className="page-content container-fluid">
+								<Switch>
+									{ThemeRoutes.map((prop, key) => {
+										if (prop.redirect) {
+											return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
+										}
+										else {
+											return (
+												<Route path={prop.path} component={prop.component} key={key} />
+											);
+										}
+									})}
+								</Switch>
+							</div>
+							<Footer />
+						</div>
 					</div>
-					<Footer />
-				</div>
+					: <HomeComponent />
+				}
 			</div>
 		);
 	}
