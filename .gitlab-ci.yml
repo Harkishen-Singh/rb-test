@@ -24,4 +24,5 @@ deploy:
     stage: deploy
     script:
         - echo "Building application"
+        - CI=false
         - npm run build

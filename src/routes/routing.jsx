@@ -74,7 +74,6 @@ var ThemeRoutes = [
   {
     path: '/',
     name: 'homePageWebsite',
-    name: 'Home',
     component: HomeComponent
   }
 ];
