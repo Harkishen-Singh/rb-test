@@ -1,0 +1,10 @@
+before_script:
+    - npm install
+    
+stages:
+    - start
+
+start:
+    stage: start
+    script:
+        - npm start
