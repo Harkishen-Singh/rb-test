@@ -3,7 +3,11 @@ image: node:latest
 # before_script:
 #     - npm install
     
-install_packages:
+stages:
+    - start
+    - deploy
+
+start:
   stage: start
   script:
     - echo "installing packages"
@@ -15,11 +19,9 @@ install_packages:
   artifacts:
     paths:
       - node_modules/
-stages:
-    - start
 
-start:
-    stage: start
+deploy:
+    stage: deploy
     script:
         - echo "Building application"
         - npm start
