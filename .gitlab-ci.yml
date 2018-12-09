@@ -7,4 +7,5 @@ stages:
 start:
     stage: start
     script:
+        - echo "Building application"
         - npm start
