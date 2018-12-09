@@ -4,7 +4,7 @@ image: node:latest
 #     - npm install
     
 install_packages:
-  stage: install
+  stage: start
   script:
     - echo "installing packages"
     - npm install
